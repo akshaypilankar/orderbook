@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import useWebSocket from 'react-use-websocket';
+import OrderBook from './Components/OrderBook';
 import './App.css';
 
+
 function App() {
+  const [messageHistory, setMessageHistory] = useState({});
+  const [sendMessage, lastMessage, readyState] = useWebSocket(`wss://api.delta.exchange:2096`);
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (lastMessage !== null) {
+      setMessageHistory((JSON.parse(lastMessage.data)));
+      setLoading(true)
+    }
+  }, [lastMessage]);
+
+  useEffect(() => {
+    if (readyState === 1) {
+      sendMessage(' {"type":"subscribe","payload":{"channels":[{"name":"l2_orderbook","symbols":["BTCUSD"]}]}}')
+    }
+  }, [readyState])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {messageHistory !== undefined && loading && <OrderBook askOrders={messageHistory.sell} bidOrders={messageHistory.buy} />}
     </div>
   );
 }

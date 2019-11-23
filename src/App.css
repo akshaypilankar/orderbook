@@ -1,22 +1,69 @@
-.App {
+#root {
+  height: auto;
+  width: auto;
   text-align: center;
+  font-size: 14px;
+  background-color: rgb(33, 41, 52);
+  color: aliceblue;
 }
 
-.App-logo {
-  height: 40vmin;
+h1.instrument {
+  font-family: monospace;
+  font-size: 32px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.OrderBook  {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
-.App-link {
-  color: #09d3ac;
+.OrderBook table {
+    width: 300px !important;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.OrderBook thead th {
+  font-weight: normal;
+}
+
+.OrderBook table tbody{
+border: 1px solid #DDD;
+}
+
+.OrderBook table thead{
+  border: 1px solid #DDD;
+  overflow-y: scroll !important; 
+  }
+
+
+.OrderBook table thead:after {
+    display: block;
+    line-height: 1em;
+    color: transparent;
+}
+
+.OrderBook table tbody td {
+    border-bottom: 1.5px dashed black;
+    padding: 5px;
+}
+
+.OrderBook table tbody td.fill-bid {
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to left, #55B987 100%, rgb(33, 41, 52) 0%);
+  background-size: 0%;
+}
+
+.OrderBook table tbody td.fill-ask {
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  background-image: linear-gradient(to left, #D75750 100%, rgb(33, 41, 52) 0%);
+  background-size: 0%;
+}
+
+.OrderBook tr.ask:last-of-type,
+.OrderBook tr.bid:first-of-type {
+  font-weight: bold;
 }
