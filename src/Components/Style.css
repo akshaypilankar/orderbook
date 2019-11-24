@@ -1,0 +1,66 @@
+#root {
+    height: auto;
+    width: auto;
+    text-align: center;
+    font-size: 14px;
+    color: aliceblue;
+}
+
+h1.instrument {
+    font-family: monospace;
+    font-size: 32px;
+}
+
+.orderBook {
+    display: flex;
+    justify-content:center
+}
+
+.tickerSelector {
+    padding-top: 100px;
+}
+
+.orderBook table {
+    width: 300px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: rgb(33, 41, 52);
+}
+
+.orderBook thead th {
+    font-weight: normal;
+}
+
+.orderBook table tbody {
+    border: 1px solid #DDD;
+}
+
+.orderBook table thead {
+    border: 1px solid #DDD;
+    overflow-y: scroll !important;
+}
+
+
+.orderBook table thead:after {
+    display: block;
+    line-height: 1em;
+    color: transparent;
+}
+
+.orderBook table tbody td {
+    border-bottom: 1.5px dashed black;
+    padding: 5px;
+}
+
+.orderBook table tbody td.fillBuy {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to left, #55B987 100%, rgb(33, 41, 52) 0%);
+    background-size: 0%;
+}
+
+.orderBook table tbody td.fillSell {
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-image: linear-gradient(to left, #D75750 100%, rgb(33, 41, 52) 0%);
+    background-size: 0%;
+}
